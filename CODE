@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Tracker</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0f14;
+    color:#e6e6e6;
+}
+
+header{
+    padding:16px 24px;
+    background:#111827;
+    border-bottom:1px solid #1f2937;
+}
+
+header h1{
+    font-size:20px;
+    margin:0;
+    font-weight:600;
+}
+
+header p{
+    margin:4px 0 0;
+    font-size:12px;
+    color:#9ca3af;
+}
+
+.container{
+    padding:20px;
+}
+
+.search{
+    width:100%;
+    padding:12px;
+    background:#111827;
+    border:1px solid #1f2937;
+    color:white;
+    border-radius:6px;
+    margin-bottom:16px;
+    outline:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f172a;
+    border:1px solid #1f2937;
+}
+
+th{
+    text-align:left;
+    font-size:12px;
+    color:#9ca3af;
+    padding:12px;
+    border-bottom:1px solid #1f2937;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #1f2937;
+    font-size:14px;
+}
+
+tr:hover{
+    background:#111827;
+}
+
+.status-in{
+    color:#22c55e;
+}
+
+.status-out{
+    color:#ef4444;
+}
+
+.up{
+    color:#22c55e;
+    font-weight:600;
+}
+
+.down{
+    color:#ef4444;
+    font-weight:600;
+}
+
+.flat{
+    color:#facc15;
+    font-weight:600;
+}
+
+.spark{
+    font-family:monospace;
+    letter-spacing:1px;
+    opacity:0.9;
+}
+
+footer{
+    padding:20px;
+    text-align:center;
+    font-size:11px;
+    color:#6b7280;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Market Tracker</h1>
+<p>Auction + Event Item Monitor</p>
+</header>
+
+<div class="container">
+
+<input class="search" id="search" onkeyup="search()" placeholder="Search items...">
+
+<table id="table">
+<tr>
+<th>ITEM</th>
+<th>STATUS</th>
+<th>PRICE</th>
+<th>TREND</th>
+<th>CHART</th>
+</tr>
+
+<tr>
+<td>Item</td>
+<td class="status-in">In Stock</td>
+<td>$42,000</td>
+<td class="up">▲ +4.8%</td>
+<td class="spark">▁▂▃▄▅▆▇█</td>
+</tr>
+
+<tr>
+<td>Item</td>
+<td class="status-out">Out of Stock</td>
+<td>$31,200</td>
+<td class="down">▼ -3.1%</td>
+<td class="spark">█▇▆▅▄▃▂▁</td>
+</tr>
+
+<tr>
+<td>Item</td>
+<td class="status-in">In Stock</td>
+<td>$18,900</td>
+<td class="flat">➜ 0.0%</td>
+<td class="spark">▄▄▄▄▄▄▄▄</td>
+</tr>
+
+</table>
+
+</div>
+
+<footer>
+live market view
+</footer>
+
+<script>
+function search(){
+    let input=document.getElementById("search").value.toUpperCase();
+    let rows=document.getElementById("table").getElementsByTagName("tr");
+
+    for(let i=1;i<rows.length;i++){
+        let cell=rows[i].getElementsByTagName("td")[0];
+        if(cell){
+            let txt=cell.textContent || cell.innerText;
+            rows[i].style.display = txt.toUpperCase().includes(input) ? "" : "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
